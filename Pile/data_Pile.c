@@ -7,6 +7,6 @@ piledata_t createPileData(char let){
 }
 
 void display_Data(piledata_t datapile){
-    printf(datapile.value);
+    printf("Char = %c\n", datapile.value);
     printf("\n");
 }

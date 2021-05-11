@@ -38,11 +38,11 @@ tree_t * init_Tree(){
 void createTree(char* expression){
    int position = 0;
    pile_t* pile = init_Pile(15);
-   piledata_t* prec;
+   piledata_t prec;
    // void stack_Pile(pile_t * pile, data_t val);
    // void unstack_Pile(pile_t * pile, data_t *elem);
    // void display_Pile(pile_t * pile);
-   while(expression[position]!="\0"){
+   while(expression[position]!='\0'){
       if(expression[position] == '*'){
          //Nouveau lien vertical
          //on ajoute le lien vertical
@@ -55,9 +55,9 @@ void createTree(char* expression){
          //Nouveau lien horizontal
          position++;
          //On dépile et on ajoute le lien horizontal
-         unstack_Pile(pile, prec);
-         printf("On dépile : %c \n", prec->value);
-         printf("On ajoute un lien horizontal entre %c et %c\n", prec->value, expression[position]);
+         unstack_Pile(pile, &prec);
+         printf("On dépile : %c \n", prec.value);
+         printf("On ajoute un lien horizontal entre %c et %c\n", prec.value, expression[position]);
 
       }
       else if(expression[position] == '('){
@@ -67,15 +67,15 @@ void createTree(char* expression){
          printf("On empile le prochain : %c \n", expression[position]);   
       }
       else if(expression[position] == ')'){
-         unstack_Pile(pile, prec);
+         unstack_Pile(pile, &prec);
          //On récupère l'emplacement
-         printf("On dépile : %c \n", prec->value);
+         printf("On dépile : %c \n", prec.value);
       }
       else{
 
       }
       position++;
-      //display_Pile(pile);
+      display_Pile(pile);
    }
 }
 

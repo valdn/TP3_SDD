@@ -70,6 +70,8 @@ void unstack_Pile(pile_t * pile, piledata_t * elem){
     if(!isEmpty(pile)){
         *elem = pile->data[pile->head];
         pile->head -= 1;
+    } else {
+        elem=NULL;
     }
 }
 
