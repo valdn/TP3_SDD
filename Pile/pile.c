@@ -10,7 +10,7 @@ pile_t * init_Pile(int size){
     if (currentPile!=NULL){
         currentPile->size = size;
         currentPile->head = -1;
-        currentPile->data = malloc(sizeof(piledata_t)*size);
+        currentPile->data = malloc(sizeof(tree_t)*size);
     }
    return currentPile; 
 }
@@ -46,12 +46,12 @@ int isEmpty(pile_t * pile){
 *@param val Donnée à ajouter à la pile
 */
 
-void stack_Pile(pile_t * pile, piledata_t val){
+void stack_Pile(pile_t * pile, tree_t val){
     if (pile->head < pile->size-1){
         pile->head += 1;
         pile->data[pile->head] = val;
      } else {
-        pile->data = realloc(pile->data, sizeof(piledata_t)*pile->size * 2);
+        pile->data = realloc(pile->data, sizeof(tree_t)*pile->size * 2);
         printf("Size of the Pile is too small, resizing\n");
         pile->size = pile->size * 2;
         pile->head += 1;
@@ -66,7 +66,7 @@ void stack_Pile(pile_t * pile, piledata_t val){
 *@param elem  Adresse de l'élèment retirer de la pile
 */
 
-void unstack_Pile(pile_t * pile, piledata_t * elem){
+void unstack_Pile(pile_t * pile, tree_t * elem){
     if(!isEmpty(pile)){
         *elem = pile->data[pile->head];
         pile->head -= 1;
@@ -86,7 +86,7 @@ void display_Pile(pile_t * pile){
         printf("Head = %d\n", pile->head);
         for (int i = 0; i <= pile->head; i++)
         {
-            display_Data(pile->data[i]);
+            display_Tree_Data(pile->data[i]);
         }
     }
 }

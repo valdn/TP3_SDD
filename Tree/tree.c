@@ -35,10 +35,11 @@ tree_t * init_Tree(){
 // }
 
 
-void createTree(char* expression){
+void createTree(tree_t * tree, char* expression){
    int position = 0;
    pile_t* pile = init_Pile(15);
-   piledata_t prec;
+   tree_t * currentTree;
+   tree_t prec;
    // void stack_Pile(pile_t * pile, data_t val);
    // void unstack_Pile(pile_t * pile, data_t *elem);
    // void display_Pile(pile_t * pile);
@@ -56,8 +57,8 @@ void createTree(char* expression){
          position++;
          //On dépile et on ajoute le lien horizontal
          unstack_Pile(pile, &prec);
-         printf("On dépile : %c \n", prec.value);
-         printf("On ajoute un lien horizontal entre %c et %c\n", prec.value, expression[position]);
+         printf("On dépile : %c \n", prec.value.letter);
+         printf("On ajoute un lien horizontal entre %c et %c\n", prec.value.letter, expression[position]);
 
       }
       else if(expression[position] == '('){
@@ -69,7 +70,7 @@ void createTree(char* expression){
       else if(expression[position] == ')'){
          unstack_Pile(pile, &prec);
          //On récupère l'emplacement
-         printf("On dépile : %c \n", prec.value);
+         printf("On dépile : %c \n", prec.value.letter);
       }
       else{
 
@@ -80,15 +81,20 @@ void createTree(char* expression){
 }
 
 void free_tree(tree_t * current){
+
 }
 
-void add_node_in_Tree(tree_t * tree, treedata_t letter){
-   tree_t * nextList;
-   tree_t * tempList;
+tree_t * create_Node(char letter){
+   tree_t * tnew = malloc(sizeof(tree_t));
+   tnew->value.letter=letter;
+   tnew->lh=NULL;
+   tnew->lv=NULL; 
+   return tnew;
+}
 
-   nextList = malloc(sizeof(tree_t));
-   // nextList->value=value;
-   // tempList=prec->next;
-   // nextList->next=tempList;
-   // prec->next=nextList;
+
+tree_t * add_Vertical_Link(tree_t * tree, tree_t * verticalTree){
+   tree->lv=malloc(sizeof(tree_t));
+   
+
 }

@@ -1,4 +1,4 @@
-#ifndef tree_h
+#ifndef TREE_H
 #define TREE_H
 
 #include <stdlib.h>
@@ -15,7 +15,7 @@ typedef struct tree {
 
 tree_t * init_Tree();
 void free_tree(tree_t * current);
-void createTree(char* expression);
+void createTree(tree_t * tree, char* expression);
 void displayDictionary(tree_t tree);
 void add_node_in_Tree(tree_t * tree, treedata_t letter);
 
