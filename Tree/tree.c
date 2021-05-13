@@ -43,6 +43,7 @@ tree_t * createTree(char* expression){
         position++;
       }
    }
+   free_Pile(pile);
    return arbre;
 }
 
@@ -109,6 +110,7 @@ void displayDictionary(tree_t ** tree, char * word, int i){
          i++;
       }
    }
+   free_Pile(pile);
 }
 
 void insert_word(tree_t ** tree, char * word){
