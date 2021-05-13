@@ -12,21 +12,21 @@ tree_t * createTree(char* expression){
    tree_t * ptrCour = NULL;
    tree_t ** prec = &arbre;
 
+   int stack = 1;
+
    if (pile != NULL){
      while(expression[position]!='\0'){
         if(expression[position] == '*'){
-          prec = &(ptrCour->lv);
+            stack = 0;
+            prec = &(ptrCour->lv);
         }
         else if(expression[position] == '+'){
           unstack_Pile(pile, &ptrCour);
           prec = &(ptrCour->lh);
+          stack = 1;
         }
         else if(expression[position] == '('){
-          position++;
-          printf("Création node : %c \n", expression[position]);
-          ptrCour = create_Node(expression[position]);
-          stack_Pile(pile, ptrCour);
-          *prec = ptrCour;
+            stack = 1;
         }
         else if(expression[position] == ')'){
           unstack_Pile(pile, &ptrCour);
@@ -34,7 +34,10 @@ tree_t * createTree(char* expression){
         else if (((expression[position] >= 'a') && (expression[position] <= 'z')) || ((expression[position] >= 'A') && (expression[position] <= 'Z')))
         {
             ptrCour = create_Node(expression[position]);
-            stack_Pile(pile, ptrCour);
+            if (stack == 1){
+               stack_Pile(pile, ptrCour);
+               stack = 0;
+            }
             *prec = ptrCour;
         }
         position++;
@@ -80,12 +83,9 @@ tree_t * add_Horizontal_Link(tree_t ** prec, tree_t * elem){
    *prec=elem;
 }
 
-void displayDictionary(tree_t ** tree){
+void displayDictionary(tree_t ** tree, char * word, int i){
    tree_t * ptrCour = *tree;
    pile_t * pile = init_Pile(25);
-
-   char word[30];
-   int i = 0;
 
    if (pile!= NULL){
       while(ptrCour != NULL){
@@ -109,4 +109,70 @@ void displayDictionary(tree_t ** tree){
          i++;
       }
    }
+}
+
+void insert_word(tree_t ** tree, char * word){
+   tree_t ** prec = tree;
+   tree_t * cour = *tree;
+   tree_t * elt = NULL;
+   
+   int i = 0;
+   int continuer = 1;
+   
+   if(word[0] != '\0'){
+      while((word[i] != '\0') && (continuer)){
+         prec = search_prec_sort(prec, word[i]);
+
+         if(((*prec) == NULL) || (word[i] != tolower((*prec)->value.letter))){
+            continuer = 0;
+            elt = create_Node(word[i]);
+            elt->lh = (*prec);
+            (*prec) = elt;
+            cour = elt;
+            i++;
+            while(word[i] != '\0'){
+               elt = create_Node(word[i]);
+               cour->lv = elt;
+               prec = &cour;
+               cour = cour->lv;
+               i++;
+            }
+         }
+         else{
+            prec = &((*prec)->lv);
+            cour = (*prec);
+         }
+         i++;
+      }
+      (*prec)->value.letter = toupper((*prec)->value.letter);
+   }
+}
+
+void search_pattern(tree_t ** tree, char * motif){
+   tree_t ** prec = tree;
+   int i = 0, continuer = 1;
+
+   while ((motif[i] != '\0') && (continuer)){
+      prec = search_prec_sort(prec, motif[i]);
+      if(((*prec) != NULL) && (tolower((*prec)->value.letter) == motif[i]))
+      {
+         prec =&((*prec)->lv);
+      }
+      else {
+         continuer = 0;
+      }
+      i++;
+   }
+   displayDictionary(prec, motif, i);
+}
+
+tree_t ** search_prec_sort(tree_t **tree, char letter){
+   tree_t * ptrCour = *tree;
+   tree_t ** prec = tree;
+
+   while ((ptrCour != NULL) && (tolower(ptrCour->value.letter)) < tolower(letter)){
+      prec = &ptrCour->lh;
+      ptrCour = ptrCour->lh;
+   }
+   return prec;
 }
