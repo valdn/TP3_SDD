@@ -5,7 +5,6 @@
 #include <stdio.h>
 
 #include "specific_tree.h"
-#include "../Pile/pile.h"
 
 typedef struct tree {
     treedata_t value;
@@ -13,9 +12,13 @@ typedef struct tree {
     struct tree * lh;
 } tree_t;
 
+#include "../Pile/pile.h"
+
 tree_t * init_Tree();
 void free_tree(tree_t * current);
-void createTree(tree_t * tree, char* expression);
+tree_t * createTree(char* expression);
+tree_t * create_Node(char letter);
+void display_Tree(tree_t * tree);
 void displayDictionary(tree_t tree);
 void add_node_in_Tree(tree_t * tree, treedata_t letter);
 

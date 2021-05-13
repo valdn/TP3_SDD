@@ -17,7 +17,7 @@
 /*                                                                      */
 /* -------------------------------------------------------------------- */
 void display_Data(treedata_t d) {
-    printf("Cost : %c", d.letter);
+    printf("Letter : %c\n", d.letter);
 }
 
 treedata_t init_Tree_Data(char letter){

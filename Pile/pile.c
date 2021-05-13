@@ -86,7 +86,7 @@ void display_Pile(pile_t * pile){
         printf("Head = %d\n", pile->head);
         for (int i = 0; i <= pile->head; i++)
         {
-            display_Tree_Data(pile->data[i]);
+            display_Data(pile->data[i].value);
         }
     }
 }

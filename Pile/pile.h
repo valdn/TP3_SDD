@@ -1,7 +1,6 @@
 #ifndef PILE_H
 #define PILE_H
 
-
 #include <stdlib.h>
 #include <stdio.h>
 
@@ -17,7 +16,7 @@ pile_t * init_Pile(int size);
 void free_Pile(pile_t * pile);
 int isEmpty(pile_t * pile);
 void stack_Pile(pile_t * pile, tree_t val);
-void unstack_Pile(pile_t * pile, tree_t *elem);
+void unstack_Pile(pile_t * pile, tree_t *prec);
 void display_Pile(pile_t * pile);
 
 #endif
