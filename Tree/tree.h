@@ -3,6 +3,7 @@
 
 #include <stdlib.h>
 #include <stdio.h>
+#include <ctype.h>
 
 #include "specific_tree.h"
 
@@ -21,6 +22,9 @@ tree_t * create_Node(char letter);
 void display_Tree(tree_t * tree);
 void displayDictionary(tree_t ** tree, char * word, int i);
 void add_node_in_Tree(tree_t * tree, treedata_t letter);
+
+void add_Vertical_Link(tree_t ** prec, tree_t * elem);
+void add_Horizontal_Link(tree_t ** prec, tree_t * elem);
 
 void insert_word(tree_t ** tree, char * word);
 void search_pattern(tree_t ** tree, char * motif);

@@ -73,13 +73,12 @@ tree_t * create_Node(char letter){
    return tnew;
 }
 
-
-tree_t * add_Vertical_Link(tree_t ** prec, tree_t * elem){
+void add_Vertical_Link(tree_t ** prec, tree_t * elem){
    elem->lv = *prec;
    *prec=elem;
 }
 
-tree_t * add_Horizontal_Link(tree_t ** prec, tree_t * elem){
+void add_Horizontal_Link(tree_t ** prec, tree_t * elem){
    elem->lh = *prec;
    *prec=elem;
 }
