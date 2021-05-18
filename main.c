@@ -1,6 +1,6 @@
 #include "Tree/tree.h"
 
-int main(int argc, char const *argv[])
+int main()
 {
     char * expression = "(a*(b*(a*T+i*m*E)+r*(d*U+T*S))+b*(a*(L*I*E+R*r*E)+i*(e*N+S*E)))";
     char * expression2 = "(a*(b*(a*T+i*m*E)+r*(d*U+T*S)))";
