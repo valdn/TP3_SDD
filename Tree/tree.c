@@ -52,6 +52,7 @@ void display_Tree(tree_t * tree){
    printf("%c \n", tree->value.letter);
    display_Tree(tree->lv);
    display_Tree(tree->lh);
+
 }
 
 void free_tree(tree_t * current){
@@ -100,7 +101,6 @@ void displayDictionary(tree_t ** tree, char * word, int i){
          ptrCour = ptrCour->lv;
          while((ptrCour == NULL) && (!isEmpty(pile))){
             unstack_Pile(pile, &ptrCour);
-            //printf("Valeur de ptrCour : %c \n", ptrCour->value.letter);
             ptrCour = ptrCour->lh;
 
             word[i] = '\0';
@@ -109,6 +109,7 @@ void displayDictionary(tree_t ** tree, char * word, int i){
          i++;
       }
    }
+   printf("\n");
    free_Pile(pile);
 }
 
