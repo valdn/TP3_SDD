@@ -6,11 +6,11 @@
 */
 
 pile_t * init_Pile(int size){
-    pile_t * currentPile = malloc(sizeof(pile_t));
+    pile_t * currentPile = (pile_t*)allocation_mem(1, sizeof(pile_t));
     if (currentPile!=NULL){
         currentPile->size = size;
         currentPile->head = -1;
-        currentPile->data = malloc(sizeof(piledata_t)*size);
+        currentPile->data = (piledata_t*)allocation_mem(1, sizeof(piledata_t));
     }
    return currentPile; 
 }
@@ -51,7 +51,7 @@ void stack_Pile(pile_t * pile, piledata_t val){
         pile->head += 1;
         pile->data[pile->head] = val;
      } else {
-        pile->data = realloc(pile->data, sizeof(piledata_t)*pile->size * 2);
+        pile->data = realloc(pile->data, pile->size*2*sizeof(piledata_t));
         printf("Size of the Pile is too small, resizing\n");
         pile->size = pile->size * 2;
         pile->head += 1;

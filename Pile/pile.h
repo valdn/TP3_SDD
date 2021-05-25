@@ -5,6 +5,8 @@
 #include <stdio.h>
 
 #include "../Tree/tree.h"
+#include "../Allocation/allocation.h"
+
 
 typedef tree_t * piledata_t;
 

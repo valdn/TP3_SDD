@@ -65,7 +65,7 @@ void free_tree(tree_t * current){
 }
 
 tree_t * create_Node(char letter){
-   tree_t * tnew = malloc(sizeof(tree_t));
+   tree_t* tnew = (tree_t*)allocation_mem(1, sizeof(tree_t));
    if(tnew != NULL){
       tnew->value.letter=letter;
       tnew->lh=NULL;
