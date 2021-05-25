@@ -1,7 +1,7 @@
              /**********************************************************/
              /*DI NARDO Valentin - VIELLARD Bruno                 2021 */
              /*--------------------------------------------------------*/
-             /*                        specific_.c                     */
+             /*                        specific_tree.c                     */
              /*          Traitement de fonction spécifique de liste    */
              /*                   FONCTIONS SPECIFIQUES A LISTE        */
              /**********************************************************/
