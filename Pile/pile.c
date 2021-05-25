@@ -10,7 +10,7 @@ pile_t * init_Pile(int size){
     if (currentPile!=NULL){
         currentPile->size = size;
         currentPile->head = -1;
-        currentPile->data = (piledata_t*)allocation_mem(1, sizeof(piledata_t));
+        currentPile->data = (piledata_t*)allocation_mem(size, sizeof(piledata_t));
     }
    return currentPile; 
 }
