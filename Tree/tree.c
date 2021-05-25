@@ -1,9 +1,16 @@
 #include "tree.h"
 
+/**
+*Initialisation de la tête de l'arbre 
+*/
 tree_t * init_Tree(){
    return NULL;
 }
 
+/**
+*Création de l'arbre avec une expression
+*@param expression Expression en entrée supposé sans erreur
+*/
 tree_t * createTree(char* expression){
    int position = 0;
    
@@ -47,6 +54,11 @@ tree_t * createTree(char* expression){
    return arbre;
 }
 
+/**
+*Affichage du contenu de l'arbre
+*@param tree Arbre à afficher
+*/
+
 void display_Tree(tree_t * tree){
    if (tree==NULL) return;
    printf("%c \n", tree->value.letter);
@@ -54,6 +66,11 @@ void display_Tree(tree_t * tree){
    display_Tree(tree->lh);
 
 }
+
+/**
+*Permet de vider l'arbre
+*@param current  Arbre courant à vider
+*/
 
 void free_tree(tree_t * current){
    tree_t * ptrCour = current;
@@ -64,6 +81,11 @@ void free_tree(tree_t * current){
    }
 }
 
+/**
+*Permet de vider l'arbre
+*@param current  Arbre courant à vider
+*/
+
 tree_t * create_Node(char letter){
    tree_t* tnew = (tree_t*)allocation_mem(1, sizeof(tree_t));
    if(tnew != NULL){
@@ -72,16 +94,6 @@ tree_t * create_Node(char letter){
       tnew->lv=NULL; 
    }
    return tnew;
-}
-
-void add_Vertical_Link(tree_t ** prec, tree_t * elem){
-   elem->lv = *prec;
-   *prec=elem;
-}
-
-void add_Horizontal_Link(tree_t ** prec, tree_t * elem){
-   elem->lh = *prec;
-   *prec=elem;
 }
 
 void displayDictionary(tree_t ** tree, char * word, int i){
