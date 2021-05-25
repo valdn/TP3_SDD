@@ -82,8 +82,8 @@ void free_tree(tree_t * current){
 }
 
 /**
-*Permet de vider l'arbre
-*@param current  Arbre courant à vider
+*Permet de créer un noeud
+*@param letter lettre contenue dans le noeud
 */
 
 tree_t * create_Node(char letter){
@@ -96,6 +96,12 @@ tree_t * create_Node(char letter){
    return tnew;
 }
 
+/**
+*Permet d'afficher le dictionnaire exprimé par un arbre'
+*@param tree Arbre duquel afficher le dictionnaire
+*@param word Mot courant à afficher
+*@param i entier pour parcourir le mot
+*/
 void displayDictionary(tree_t ** tree, char * word, int i){
    tree_t * ptrCour = *tree;
    pile_t * pile = init_Pile(25);
@@ -125,6 +131,11 @@ void displayDictionary(tree_t ** tree, char * word, int i){
    free_Pile(pile);
 }
 
+/**
+*Permet d'insérer un mot dans un arbre'
+*@param tree Arbre duquel afficher le dictionnaire
+*@param word Mot à insérer
+*/
 void insert_word(tree_t ** tree, char * word){
    tree_t ** prec = tree;
    tree_t * cour = *tree;
@@ -165,6 +176,11 @@ void insert_word(tree_t ** tree, char * word){
    }
 }
 
+/**
+*Permet d'afficher tout les mots débutant par un certains motif'
+*@param tree Arbre duquel afficher les mots correspondants
+*@param motif Motif
+*/
 void search_pattern(tree_t ** tree, char * motif){
    tree_t ** prec = tree;
    int i = 0, continuer = 1;
@@ -187,6 +203,11 @@ void search_pattern(tree_t ** tree, char * motif){
       printf("Aucun mot correspondant au motif\n");
 }
 
+/**
+*Recherche un caractère et retourne un pointeur sur le précédent
+*@param tree Arbre dans lequel faire la recherche
+*@param letter Lettre à trouver dans l'arbre
+*/
 tree_t ** search_prec_sort(tree_t **tree, char letter){
    tree_t * ptrCour = *tree;
    tree_t ** prec = tree;
