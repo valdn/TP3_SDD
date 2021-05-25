@@ -12,9 +12,12 @@ int main()
 
     tree = createTree(expression2);
     insert_word(&tree, "abolir");
+    insert_word(&tree, "abolir");
     displayDictionary(&tree, c, 0);
     char d[35] = "ab";
     search_pattern(&tree,d);
+    char y[35] = "zz";
+    search_pattern(&tree,y);
     free_tree(tree);
     
     return 0;

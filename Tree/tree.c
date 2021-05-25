@@ -146,7 +146,10 @@ void insert_word(tree_t ** tree, char * word){
          }
          i++;
       }
-      (*prec)->value.letter = toupper((*prec)->value.letter);
+      if (!continuer)
+         (*prec)->value.letter = toupper((*prec)->value.letter);
+      else
+         printf("Le mot existe déjà\n");
    }
 }
 
@@ -165,7 +168,11 @@ void search_pattern(tree_t ** tree, char * motif){
       }
       i++;
    }
-   displayDictionary(prec, motif, i);
+
+   if (*prec!=NULL)
+      displayDictionary(prec, motif, i);
+   else
+      printf("Aucun mot correspondant au motif\n");
 }
 
 tree_t ** search_prec_sort(tree_t **tree, char letter){
